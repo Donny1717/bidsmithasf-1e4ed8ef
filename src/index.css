@@ -1,96 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* BidSmith ASF Design System - Dark enterprise theme with gold accents */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark enterprise theme */
+    --background: 220 20% 10%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 18% 14%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 18% 14%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Gold/Yellow primary accent */
+    --primary: 45 93% 47%;
+    --primary-foreground: 220 20% 10%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 16% 22%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 14% 30%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 220 20% 10%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 50% 30%;
+    --input: 220 16% 22%;
+    --ring: 45 93% 47%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Sidebar */
+    --sidebar-background: 220 18% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 45 93% 47%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 16% 22%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 14% 25%;
+    --sidebar-ring: 45 93% 47%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Chart colors */
+    --chart-1: 45 93% 47%;
+    --chart-2: 45 80% 55%;
+    --chart-3: 220 14% 40%;
+    --chart-4: 220 16% 30%;
+    --chart-5: 220 18% 20%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Custom BidSmith tokens */
+    --gold: 45 93% 47%;
+    --gold-light: 45 90% 60%;
+    --gold-dark: 45 95% 38%;
+    --surface-dark: 220 20% 8%;
+    --surface-elevated: 220 18% 16%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Shadows */
+    --shadow-gold: 0 10px 40px -10px hsl(45 93% 47% / 0.3);
+    --shadow-xl: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Same as root - this is a dark-first theme */
+    --background: 220 20% 10%;
     --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -100,6 +83,36 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .gradient-gold {
+    @apply bg-gradient-to-r from-primary to-[hsl(var(--gold-light))];
+  }
+
+  .gradient-dark {
+    @apply bg-gradient-to-br from-background via-card to-[hsl(var(--surface-dark))];
+  }
+
+  .gradient-surface {
+    @apply bg-gradient-to-br from-card to-secondary;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(var(--gold-light))];
+  }
+
+  .border-gold {
+    @apply border-primary/20;
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px hsl(var(--gold) / 0.2);
   }
 }
