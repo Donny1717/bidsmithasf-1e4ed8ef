@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { Menu, X, Shield } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Menu, X, LogIn, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   const navLinks = [
     { href: '#platform', label: 'Platform' },
@@ -40,6 +44,28 @@ const Header = () => {
             ))}
           </div>
 
+          {/* Auth Button - Desktop */}
+          <div className="hidden md:flex items-center">
+            {user ? (
+              <Button
+                variant="outline"
+                onClick={signOut}
+                className="border-primary/50 hover:bg-primary/10"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </Button>
+            ) : (
+              <Button
+                onClick={() => navigate('/auth')}
+                className="bg-primary hover:bg-primary/90"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Sign In
+              </Button>
+            )}
+          </div>
+
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden text-foreground"
@@ -63,6 +89,32 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
+            <div className="pt-4 border-t border-border">
+              {user ? (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    signOut();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full border-primary/50 hover:bg-primary/10"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    navigate('/auth');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-primary hover:bg-primary/90"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </nav>
