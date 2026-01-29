@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu, X, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, LogIn, LogOut, LayoutDashboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -44,17 +44,27 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Auth Button - Desktop */}
-          <div className="hidden md:flex items-center">
+          {/* Auth Buttons - Desktop */}
+          <div className="hidden md:flex items-center gap-3">
             {user ? (
-              <Button
-                variant="outline"
-                onClick={signOut}
-                className="border-primary/50 hover:bg-primary/10"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
+              <>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate('/dashboard')}
+                  className="border-primary/50 hover:bg-primary/10"
+                >
+                  <LayoutDashboard className="w-4 h-4 mr-2" />
+                  Dashboard
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={signOut}
+                  className="hover:bg-primary/10"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </>
             ) : (
               <Button
                 onClick={() => navigate('/auth')}
@@ -89,19 +99,32 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <div className="pt-4 border-t border-border">
+            <div className="pt-4 border-t border-border space-y-2">
               {user ? (
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    signOut();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full border-primary/50 hover:bg-primary/10"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </Button>
+                <>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      navigate('/dashboard');
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full border-primary/50 hover:bg-primary/10"
+                  >
+                    <LayoutDashboard className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      signOut();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full hover:bg-primary/10"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </>
               ) : (
                 <Button
                   onClick={() => {
