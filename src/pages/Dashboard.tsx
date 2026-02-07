@@ -144,11 +144,15 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-3 sm:grid-cols-2">
-              <Button variant="outline" className="justify-start h-auto py-4">
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto py-4"
+                onClick={() => navigate("/document-analysis")}
+              >
                 <div className="text-left">
-                  <p className="font-medium">Create New Bid</p>
+                  <p className="font-medium">Analyze Document</p>
                   <p className="text-sm text-muted-foreground">
-                    Start an AI-powered tender strategy
+                    Upload TOR/PDF for AI analysis
                   </p>
                 </div>
               </Button>
